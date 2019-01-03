@@ -3,50 +3,6 @@ from datetime import date
 from datetime import timedelta
 
 
-def china_phone():
-    tel_header = [
-        '130', '133', '132', '133', '134', "136", "137",
-        "138", "139", "147", "150", "151", "152", "153",
-        "155", "156", "157", "158", "159", "186", "187", "188"]
-    result = random.choice(tel_header) + "".join(
-        random.choice("0123456789") for i in range(8))
-    print('手机号 {}'.format(result))
-    return result
-
-
-def china_name():
-    last_names = []
-    with open('name.txt', "rb") as file:
-        for i in file:
-            last_names.append(i.strip().decode('utf-8').split("   ")[1])
-    num1 = random.randint(1, 127)
-    num2 = random.randint(1, 127)
-    num3 = random.randint(1, 127)
-    nameOld = last_names[num1] + last_names[num2] + last_names[num3]
-    nameNew = ''.join(nameOld.split())
-    print('姓名 {}'.format(nameNew))
-    return nameNew
-
-
-def bank_id():
-    file_path = 'bank.txt'
-    try:
-        with open(file_path, 'r') as init_data:
-            init_bank_id = init_data.readline()
-        with open(file_path, 'w') as update_data:
-            update_data.write(str(int(init_bank_id) + 1))
-        with open(file_path, 'r') as load_data:
-            load_bank_id = load_data.readline()
-        if int(load_bank_id) >= 6214664212313320500 \
-                and int(load_bank_id) <= 6214664212313321000:
-            print('建设银行卡号 {}'.format(load_bank_id))
-            return load_bank_id
-        else:
-            print('汇付托管建设银行卡卡号超过限制了,更换银行卡卡段')
-    except Exception as e:
-        print('读取更新汇付托管建设银行卡卡号异常 %s' % e)
-
-
 class ChinaCardId(object):
 
     def __init__(self):
@@ -105,16 +61,37 @@ class ChinaCardId(object):
         for a in range(0, len(id)):
             count += int(id[a]) * weight[a]
         id = id + checkCode[str(count % 11)]
-        print('身份照号码 {}'.format(id))
+        # print('身份照号码 {}'.format(id))
         return id
 
 
-def china_card_id():
-    return ChinaCardId().cardid()
+def china_info():
+    last_names = []
+    with open('name.txt', "rb") as file:
+        for i in file:
+            last_names.append(i.strip().decode('utf-8').split("   ")[1])
+    num1 = random.randint(1, 127)
+    num2 = random.randint(1, 127)
+    num3 = random.randint(1, 127)
+    name_old = last_names[num1] + last_names[num2] + last_names[num3]
+    name_new = ''.join(name_old.split())
+
+    tel_header = [
+        '130', '133', '132', '133', '134', "136", "137",
+        "138", "139", "147", "150", "151", "152", "153",
+        "155", "156", "157", "158", "159", "186", "187", "188"]
+    result = random.choice(tel_header) + "".join(
+        random.choice("0123456789") for i in range(8))
+
+    header = '6214664212313320'
+    num = random.randint(000, 500)
+    bank = int(header + str(num))
+
+    print('姓名 {}'.format(name_new))
+    print('手机号 {}'.format(result))
+    print('身份照号码 {}'.format(ChinaCardId().cardid()))
+    print('银行卡号 {}'.format(bank))
 
 
 if __name__ == '__main__':
-    china_name()
-    china_phone()
-    china_card_id()
-    bank_id()
+    china_info()
