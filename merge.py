@@ -178,5 +178,5 @@ if __name__ == '__main__':
     # 分支列表
     branch_list = ['111', '222']
     # env = pre , env = test
-    run = MergeBranchJenkins(env='pre', items=items, branch_list=branch_list)
+    run = MergeBranchJenkins(env='test', items=items, branch_list=branch_list)
     run()
