@@ -95,3 +95,5 @@ def china_info():
 
 if __name__ == '__main__':
     china_info()
+
+input()

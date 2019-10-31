@@ -7,9 +7,9 @@ import requests
 import xlrd
 
 # 更新以下三个值即可
-username = 'admin'
-test_token = 'a6c70fafb72711c214bff22a6b8ebc81'
-pre_token = '8a768661528376bed4edf30e2a27ec90'
+username = 'zhulh'
+test_token = '2e97f4577b2f3c5f4ec364f1529479db'
+pre_token = '5160b7cb32358de406e6b89e04f8772d'
 
 test_url = 'http://18.16.200.12:8080/jenkins'
 pre_url = 'http://18.16.200.51:8080/jenkins'
@@ -173,10 +173,7 @@ class MergeBranchJenkins(object):
 
 
 if __name__ == '__main__':
-    # 项目列表
-    items = ['1', '2']
-    # 分支列表
-    branch_list = ['111', '222']
-    # env = pre , env = test
-    run = MergeBranchJenkins(env='test', items=items, branch_list=branch_list)
+    items = ['base.product',]
+    branch_list = ['feature_DBJG-1555_base.product',]
+    run = MergeBranchJenkins(env='pre', items=items, branch_list=branch_list)
     run()

@@ -59,4 +59,4 @@ def update_repay(loan_id):
 
 
 if __name__ == '__main__':
-    update_repay(loan_id='111111')
+    update_repay(loan_id=47262)
